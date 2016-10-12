@@ -1,8 +1,6 @@
 package domain;
 
-public class Dollar {
-
-	private int amount;
+public class Dollar extends Money{
 
 	public Dollar(int amount) {
 		this.amount = amount;
@@ -13,12 +11,6 @@ public class Dollar {
 		return product;
 		
 	}
-	
-	public boolean equals(Object other){
-		Dollar dollar = (Dollar)other;
-		return this.amount == dollar.amount;
-	}
-
 	
 
 }
