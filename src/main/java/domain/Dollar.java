@@ -1,8 +1,8 @@
 package domain;
 
-public class Dollar {
+public class Dollar extends Pieniądze {
 
-	private int amount;
+	public int amount;
 
 	public Dollar(int amount) {
 		this.amount = amount;
@@ -14,11 +14,10 @@ public class Dollar {
 		
 	}
 	
-	public boolean equals(Object other){
-		Dollar dollar = (Dollar)other;
-		return this.amount == dollar.amount;
+	public boolean equals(Object other){ 
+		
+		Dollar dollar =(Dollar)other; 
+		return this.amount==dollar.amount;
 	}
-
-	
 
 }
