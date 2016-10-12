@@ -7,7 +7,9 @@ package domain;
 	public boolean equals(Object other){
 		
 		Curr curr = (Curr)other;
-		return curr.amount==this.amount;
+		getClass();
+		return curr.amount == this.amount
+				&& getClass().equals(other.getClass());
 	}
 		
 	}
