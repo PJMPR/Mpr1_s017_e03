@@ -1,8 +1,6 @@
 package domain;
 
-public class Dollar {
-
-	private int amount;
+public class Dollar extends Currency{
 
 	public Dollar(int amount) {
 		this.amount = amount;
@@ -12,13 +10,6 @@ public class Dollar {
 		Dollar product = new Dollar(amount * multiplier);
 		return product;
 		
-	}
-	
-	public boolean equals(Object other){
-		Dollar dollar = (Dollar)other;
-		return this.amount == dollar.amount;
-	}
-
-	
+	}	
 
 }
