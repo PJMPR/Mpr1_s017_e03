@@ -10,12 +10,12 @@ public class Dollar {
 
 	public Dollar times(int multiplier) {
 		Dollar product = new Dollar(amount * multiplier);
-		return product;
-		
+		return product;	
 	}
 	
 	public boolean equals(Object other){
-		return true;
+		
+		Dollar dollar = (Dollar)other;
+		return this.amount == dollar.amount;
+		}
 	}
-
-}
