@@ -7,8 +7,8 @@ public class Dollar extends Curr{
 		this.amount = amount;
 	}
 
-	public Franc times(int multiplier) {
-		Franc product = new Franc(amount * multiplier);
+	public Dollar times(int multiplier) {
+		Dollar product = new Dollar(amount * multiplier);
 		return product;
 	}
 }
