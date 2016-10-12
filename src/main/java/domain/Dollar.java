@@ -1,20 +1,14 @@
 package domain;
 
-	public class Dollar {
-		
-		private int amount;
+public class Dollar extends Curr{
 
-		public Dollar(int amount) {
-			this.amount = amount;
-		}
-		
-		public Dollar times(int multiplier) {
-			Dollar product = new Dollar(amount * multiplier);
-			return product;
-		}
-
-		public boolean equals(Object other){
-			Dollar dollar = (Dollar)other;
-			return this.amount == dollar.amount;
-		}
+	public Dollar(int amount) {
+	
+		this.amount = amount;
 	}
+
+	public Franc times(int multiplier) {
+		Franc product = new Franc(amount * multiplier);
+		return product;
+	}
+}

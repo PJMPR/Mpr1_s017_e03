@@ -1,23 +1,14 @@
 package domain;
 
-public class Franc {
-
-	private  int amount;
+public class Franc extends Curr{
 
 	public Franc(int amount) {
+	
 		this.amount = amount;
 	}
 
 	public Franc times(int multiplier) {
-		
-		return new Franc(this.amount * multiplier);
-		
+		Franc product = new Franc(amount * multiplier);
+		return product;
 	}
-	
-	public boolean equals(Object other){
-		
-		Franc franc = (Franc)other;
-		return this.amount == franc.amount;
-	}	
-
 }
