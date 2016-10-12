@@ -15,4 +15,8 @@ public class MoneyTest {
 		assertEquals(15, product.amount);
 	}
 
+	public void testEquality(){
+		assertEquals(new Dollar(5), new Dollar(5));
+		assertNotEquals(new Dollar(5), new Dollar(10));
+	}
 }
