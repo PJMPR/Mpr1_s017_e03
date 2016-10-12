@@ -1,26 +1,20 @@
 package domain;
 
-public class Dollar {
-
-	public  int amount;
-
-	public Dollar(int amount) {
-		this.amount = amount;
-	}
-
-	public Dollar times(int multiplier) {
-		Dollar product = new Dollar(amount * multiplier);
-		return product;
+	public class Dollar {
 		
-	}
-	
-	public boolean equals(Object other){
-		if(this == other){
-			return true;
+		private int amount;
+
+		public Dollar(int amount) {
+			this.amount = amount;
 		}
-		return false;
+		
+		public Dollar times(int multiplier) {
+			Dollar product = new Dollar(amount * multiplier);
+			return product;
+		}
+
+		public boolean equals(Object other){
+			Dollar dollar = (Dollar)other;
+			return this.amount == dollar.amount;
+		}
 	}
-
-	
-
-}
