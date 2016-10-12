@@ -11,13 +11,13 @@ public abstract class Money {
 	}
 
 	public static Money dollar(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new Dollar(i);
 	}
 
 	public static Money franc(int i) {
 		// TODO Auto-generated method stub
-		return null;
+		return new Franc(i);
 	}
 	
 	public abstract Money times(int multiplier);
