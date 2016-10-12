@@ -7,21 +7,21 @@ public class MoneyTest {
 
 	@Test
 	public void testMultiplication(){
-		Franc five = new Franc(5);
-		assertEquals(new Franc(10), five.times(2));
-		assertEquals(new Franc(15), five.times(3));
+		Curr five = Curr.dollar(5);
+		assertEquals(Curr.dollar(10), five.times(2));
+		assertEquals(Curr.dollar(15), five.times(3));
 	}
 
 	@Test
 	public void testFrancMultiplication(){
-		Franc five = new Franc(5);
-		assertEquals(new Franc(10), five.times(2));
-		assertEquals(new Franc(15), five.times(3));
+		Curr five = Curr.franc(5);
+		assertEquals(Curr.franc(10), five.times(2));
+		assertEquals(Curr.franc(15), five.times(3));
 	}
 
 	@Test
 	public void testEquality(){
-		assertEquals(new Franc(5), new Franc(5));
-		assertNotEquals(new Franc(5), new Franc(10));
+		assertEquals(Curr.dollar(5), Curr.franc(5));
+		assertNotEquals(Curr.franc(5), Curr.franc(10));
 	}
 }

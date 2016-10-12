@@ -1,6 +1,6 @@
 package domain;
 
-	public class Curr {
+	public abstract class Curr {
 		
 	protected int amount;
 	
@@ -11,5 +11,15 @@ package domain;
 		return curr.amount == this.amount
 				&& getClass().equals(other.getClass());
 	}
+	
+	public static Curr dollar(int i){
+		return null;
+	}
+	
+	public static Curr franc(int i){
+		return null;
+	}
+	
+	public abstract Curr times(int multiplier);
 		
 	}
