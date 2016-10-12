@@ -14,8 +14,10 @@ public class Dollar {
 		
 	}
 	
-	public boolean equals(Object other){
-		return true;
+	public boolean equals(Object other){ 
+		
+		Dollar dollar =(Dollar)other; 
+		return this.amount==dollar.amount;
 	}
 
 }
