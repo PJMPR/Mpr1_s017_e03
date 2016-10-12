@@ -15,7 +15,14 @@ public class Dollar {
 	}
 	
 	public boolean equals(Object other){
-		return true;
+		if(other instanceof Dollar)
+		{
+			if(this == other)
+				return true;
+			if(this.amount == ( (Dollar)other ).amount )
+				return true;
+		}
+		 return false;
 	}
 
 }
