@@ -28,8 +28,7 @@ public class Money {
 		return new Money(this.amount*multiplier, currency);
 	}
 	
-	public  String currency(){
-		return currency;
-		
-	};
+	public Money plus(Money money){
+		return new Money(this.amount + money.amount, currency);
+	}
 }
