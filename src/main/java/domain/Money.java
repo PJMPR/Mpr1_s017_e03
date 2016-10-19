@@ -31,5 +31,11 @@ public class Money {
 	public  String currency(){
 		return currency;
 		
-	};
+	}
+
+	public Money plus(Money other) {
+		return new Money(this.amount + amount, currency);
+	}
+
+	
 }
