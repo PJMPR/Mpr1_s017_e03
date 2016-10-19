@@ -9,6 +9,9 @@ public class Dollar extends Money{
 	public Dollar times(int multiplier) {
 		Dollar product = new Dollar(amount * multiplier);
 		return product;
+	}
 		
+	public String currency() {
+		return "USD";
 	}
 }
