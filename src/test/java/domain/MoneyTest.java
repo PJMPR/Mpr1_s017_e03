@@ -14,6 +14,12 @@ public class MoneyTest {
 	}
 	
 	@Test
+	public void testSimpleAddition(){
+		Money sum = Money.dollar(5).plus(Money.dollar(5));
+		assertEquals(sum, Money.dollar(10));
+	}
+	
+	@Test
 	public void testFrancMultiplication(){
 		Money five = Money.franc(5);
 		assertEquals(Money.franc(10), five.times(2));
@@ -33,16 +39,6 @@ public class MoneyTest {
 	public void testCurrency(){
 		assertEquals("USD" , Money.dollar(1).currency());
 		assertEquals("CHF" , Money.franc(1).currency());
-	}
-	
-	@Test
-	public void test_Constructing_Money_With_Currency(){
-		
-		Money dollar = Money.dollar(1);
-		Money franc = Money.franc(1);
-		assertEquals("USD", dollar.currency);
-		assertEquals("CHF", franc.currency);
-		
 	}
 
 }
