@@ -29,7 +29,10 @@ public class Money {
 	}
 	
 	public  String currency(){
-		return currency;
-		
+		return currency;	
 	};
+	
+	public Money plus(Money money){
+		return new Money(this.amount + money.amount , currency);
+		}
 }
