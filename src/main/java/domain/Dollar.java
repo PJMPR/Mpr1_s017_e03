@@ -11,8 +11,4 @@ public class Dollar extends Money{
 		return product;
 		
 	}
-
-	void IntellijCheckout(){System.out.println("Commit checkout");}
-	
-
 }
