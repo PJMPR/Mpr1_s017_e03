@@ -28,7 +28,7 @@ public class Money implements Expression {
 		return new Money(this.amount*multiplier, currency);
 	}
 	
-	public Expression plus(Money money){
+	public Sum plus(Money money){
 		return new Sum(this, money);
 	}
 	
