@@ -3,6 +3,7 @@ package domain;
 public abstract class Money {
 	
 	protected int amount;
+	protected String currency;
 	
 	public boolean equals(Object other){
 		Money money = (Money)other;

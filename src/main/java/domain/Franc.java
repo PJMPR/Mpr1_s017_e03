@@ -2,14 +2,16 @@ package domain;
 
 public class Franc extends Money {
 
-	public Franc(int amount) {
-		this.amount=amount;
+	public String currency(){
+		return "CHD";			
 	}
 	
-	public String currency(){
-		return "USD";			
+	public Franc(int amount) {
+		this.amount=amount;
+		this.currency = currency();
 	}
 
+	
 	public Franc times(int multiplier) {
 		return new Franc(this.amount*multiplier);
 	}

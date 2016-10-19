@@ -2,12 +2,13 @@ package domain;
 
 public class Dollar extends Money{
 
-	public Dollar(int amount) {
-		this.amount = amount;
+	public String currency(){
+		return "USD";			
 	}
 	
-	public String currency(){
-		return "CHD";			
+	public Dollar(int amount) {
+		this.amount = amount;
+		this.currency = currency();
 	}
 
 	public Dollar times(int multiplier) {

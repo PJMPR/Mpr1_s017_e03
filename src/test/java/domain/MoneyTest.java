@@ -35,4 +35,11 @@ public class MoneyTest {
 		assertEquals("CHD" , Money.franc(1).currency());
 	}
 
+	@Test
+	public void test_Constructing_Money_With_Currency(){
+		Money dollar = Money.dollar(1);
+		Money franc = Money.franc(1);
+		assertEquals("USD", dollar.currency);
+		assertEquals("CHD", franc.currency);
+}
 }
