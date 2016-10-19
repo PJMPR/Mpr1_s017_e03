@@ -18,5 +18,8 @@ public abstract class Money {
 		return new Franc(i);
 	}
 	
+	
 	public abstract Money times(int multiplier);
+
+	public abstract String currency();
 }
