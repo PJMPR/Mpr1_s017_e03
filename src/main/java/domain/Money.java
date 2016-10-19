@@ -3,6 +3,7 @@ package domain;
 public abstract class Money {
 	
 	protected int amount;
+	public String currency;
 	
 	public boolean equals(Object other){
 		Money money = (Money)other;
@@ -17,6 +18,7 @@ public abstract class Money {
 	public static Money franc(int i) {
 		return new Franc(i);
 	}
+	
 	
 	public abstract Money times(int multiplier);
 	
