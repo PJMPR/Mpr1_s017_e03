@@ -9,6 +9,7 @@ public abstract class Money {
 		return money.amount == this.amount 
 				&& getClass().equals(other.getClass());
 	}
+	public abstract String currency();
 
 	public static Money dollar(int i) {
 		return new Dollar(i);
