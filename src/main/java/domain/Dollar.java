@@ -14,4 +14,10 @@ public class Dollar extends Money{
 	public String currency() {
 		return "USD";
 	}
+
+	@Override
+	public String Currency() {
+		// TODO Auto-generated method stub
+		return "USD";
+	}
 }

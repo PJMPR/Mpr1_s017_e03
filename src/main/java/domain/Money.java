@@ -21,4 +21,8 @@ public abstract class Money {
 	public abstract Money times(int multiplier);
 	
 	public abstract String Currency();
+
+	public abstract String currency();
+		
+	
 }

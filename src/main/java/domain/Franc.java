@@ -12,6 +12,12 @@ public class Franc extends Money {
 	public String currency() {
 		return "CHD";
 	}
+
+	@Override
+	public String Currency() {
+		// TODO Auto-generated method stub
+		return "CHD";
+	}
 	
 	
 
