@@ -6,11 +6,10 @@ public class Sum implements Expression {
 	
 		this.augend=augend;
 		this.addend=addend;
-	
-		
 	}
+	
 	public Money augend;
 	public Money addend;
-	}
+}
 
 
