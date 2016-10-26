@@ -6,7 +6,7 @@ import java.util.*;
 public class Person {
 
 	private String pesel;
-	enum Gender{
+	public enum Gender{
 		Male, Female
 	}
 
