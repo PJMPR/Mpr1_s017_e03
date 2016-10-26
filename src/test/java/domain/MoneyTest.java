@@ -122,7 +122,12 @@ public class MoneyTest {
         assertEquals(20,person.getAge());
         assertEquals(new GregorianCalendar(1996,3,21),person.getDayOfBirth());
 
-
+		Person person2 = new Person();
+		person2.setPesel("05321577701");
+		assertEquals(true,person2.checkPesel());
+		assertEquals(Person.Gender.Female,person2.getGender());
+		assertEquals(11,person2.getAge());
+		assertEquals(new GregorianCalendar(2005,12,15),person2.getDayOfBirth());
 	}
 }
 
