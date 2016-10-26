@@ -2,7 +2,10 @@ package domain;
 
 import static org.junit.Assert.*;
 
+import domain.model.Person;
 import org.junit.Test;
+
+import java.util.GregorianCalendar;
 
 public class MoneyTest {
 
@@ -108,6 +111,18 @@ public class MoneyTest {
 		Money result = bank.reduce(sum, "USD");
 		assertEquals(Money.dollar(20), result);
 		
+	}
+
+	@Test
+	public void testPersonPesel() {
+        Person person = new Person();
+        person.setPesel("96032104357");
+        assertEquals(true,person.checkPesel());
+        assertEquals(Person.Gender.Male,person.getGender());
+        assertEquals(20,person.getAge());
+        assertEquals(new GregorianCalendar(1996,3,21),person.getDayOfBirth());
+
+
 	}
 }
 
