@@ -75,14 +75,25 @@ public class Person {
 	public int getAge(){
         Calendar now = new GregorianCalendar();
         int year = now.get(Calendar.YEAR);
+        int month = now.get(Calendar.MONTH);
 
         if(Character.getNumericValue(getPesel().charAt(2)) > 1  && Character.getNumericValue(getPesel().charAt(2)) < 5 ) {
            StringBuilder yearOfBirth = new StringBuilder();
            yearOfBirth.append("2" + "0" + getPesel().charAt(0) + getPesel().charAt(1));
            String s = yearOfBirth.toString();
             Integer birthYear = Integer.valueOf(s);
-            return  year - birthYear;
 
+            StringBuilder monthOfBirth = new StringBuilder();
+            monthOfBirth.append("" + Character.getNumericValue(getPesel().charAt(2)-2) + getPesel().charAt(3));
+            String sMonth = monthOfBirth.toString();
+            Integer birthMonth = Integer.valueOf(sMonth);
+
+            if (birthMonth > month) {
+                return (year - birthYear)-1;
+            }
+            else {
+                return year - birthYear;
+            }
         }
         else if (Character.getNumericValue(getPesel().charAt(2)) <= 1)
         {
@@ -90,7 +101,19 @@ public class Person {
             yearOfBirth.append("1" + "9" + getPesel().charAt(0) + getPesel().charAt(1));
             String s = yearOfBirth.toString();
             Integer birthYear = Integer.valueOf(s);
-            return  year - birthYear;
+
+            StringBuilder monthOfBirth = new StringBuilder();
+            monthOfBirth.append("" + getPesel().charAt(2) +  getPesel().charAt(3));
+            String sMonth = monthOfBirth.toString();
+            Integer birthMonth = Integer.valueOf(sMonth);
+
+
+            if (birthMonth > month) {
+                return (year - birthYear)-1;
+            }
+            else {
+                return year - birthYear;
+            }
         }
 
         else return 0;
