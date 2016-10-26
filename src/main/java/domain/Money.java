@@ -35,5 +35,9 @@ public class Money implements Expression {
 	public  String currency(){
 		return currency;
 		
-	};
+	}
+	
+	public Money reduce(String currency) {
+		return null;
+	}
 }

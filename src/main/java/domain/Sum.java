@@ -2,15 +2,17 @@ package domain;
 
 public class Sum implements Expression {
 	
-	public Sum(Money augend, Money addend) {
-	
-		this.augend=augend;
-		this.addend=addend;
-	
-		
-	}
 	public Money augend;
 	public Money addend;
+	
+	public Sum(Money augend, Money addend) {
+		this.augend=augend;
+		this.addend=addend;
 	}
+	
+	public Money reduce(String currency) {
+		return new Money(addend.amount + augend.amount,currency);
+	}
+}
 
 
