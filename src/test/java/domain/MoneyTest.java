@@ -116,7 +116,7 @@ public class MoneyTest {
 	@Test
 	public void testPersonPesel() {
         Person person = new Person();
-        person.setPesel("96032104357");
+        person.setPesel("96032184313");
         assertEquals(true,person.checkPesel());
         assertEquals(Person.Gender.Male,person.getGender());
         assertEquals(20,person.getAge());
