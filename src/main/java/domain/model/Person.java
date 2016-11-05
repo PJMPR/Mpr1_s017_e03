@@ -11,7 +11,7 @@ public class Person {
 	}
 
     public Person(){
-    String pesel;
+
     }
 
 	public String getPesel() {
@@ -63,13 +63,11 @@ public class Person {
 
     }
 
-    public int dayOfBirth(){
+    private int dayOfBirth(){
         StringBuilder dayOfBirth = new StringBuilder();
         dayOfBirth.append("" + getPesel().charAt(4) + getPesel().charAt(5));
         String sDay = dayOfBirth.toString();
-        Integer birthDay = Integer.valueOf(sDay);
-
-        return birthDay;
+        return  Integer.valueOf(sDay);
     }
 
 	public int getAge(){
@@ -103,8 +101,8 @@ public class Person {
         }
 	}
 
-    public int validatePesel(){
-        List<Integer> peselValidator = new ArrayList();
+    private int validatePesel(){
+        List<Integer> peselValidator = new ArrayList<Integer>();
         peselValidator.add(1);
         peselValidator.add(3);
         peselValidator.add(7);
@@ -116,16 +114,13 @@ public class Person {
             verify = (verify + Character.getNumericValue(getPesel().charAt(k)) * peselValidator.get(k % 4)) % 10;
         }
 
-        int check = (10-verify) % 10;
-        return check;
+        return  (10-verify) % 10;
+
     }
-	public boolean checkPesel(){
-        if(getPesel().length() == 11 &&  Character.getNumericValue(getPesel().charAt(10)) == validatePesel()   ){
-            return true;
-        }
-        else
-            return false;
-	}
+	public boolean checkPesel() {
+        return (getPesel().length() == 11 && Character.getNumericValue(getPesel().charAt(10)) == validatePesel());
+    }
+
 
 }
 
