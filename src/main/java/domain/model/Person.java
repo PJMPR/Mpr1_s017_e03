@@ -36,13 +36,7 @@ public class Person {
             String sMonth = monthOfBirth.toString();
             Integer birthMonth = Integer.valueOf(sMonth);
 
-            StringBuilder dayOfBirth = new StringBuilder();
-            dayOfBirth.append("" + getPesel().charAt(4)+ getPesel().charAt(5));
-            String sDay = dayOfBirth.toString();
-            Integer birthDay = Integer.valueOf(sDay);
-
-
-
+            int birthDay = dayOfBirth();
 
 
             return new GregorianCalendar(birthYear,birthMonth, birthDay);
@@ -60,16 +54,22 @@ public class Person {
             String sMonth = monthOfBirth.toString();
             Integer birthMonth = Integer.valueOf(sMonth);
 
-            StringBuilder dayOfBirth = new StringBuilder();
-            dayOfBirth.append("" + getPesel().charAt(4) + getPesel().charAt(5));
-            String sDay = dayOfBirth.toString();
-            Integer birthDay = Integer.valueOf(sDay);
+            int birthDay = dayOfBirth();
 
             return new GregorianCalendar(birthYear,birthMonth,birthDay);
         }
 
         return null;
 
+    }
+
+    public int dayOfBirth(){
+        StringBuilder dayOfBirth = new StringBuilder();
+        dayOfBirth.append("" + getPesel().charAt(4) + getPesel().charAt(5));
+        String sDay = dayOfBirth.toString();
+        Integer birthDay = Integer.valueOf(sDay);
+
+        return birthDay;
     }
 
 	public int getAge(){
@@ -90,9 +90,6 @@ public class Person {
             }
 
         }
-
-
-
 
 
 	public Gender getGender(){
@@ -117,12 +114,10 @@ public class Person {
 
         for (int k = 0; k <= 9; k++) {
             verify = (verify + Character.getNumericValue(getPesel().charAt(k)) * peselValidator.get(k % 4)) % 10;
-
         }
 
         int check = (10-verify) % 10;
         return check;
-
     }
 	public boolean checkPesel(){
         if(getPesel().length() == 11 &&  Character.getNumericValue(getPesel().charAt(10)) == validatePesel()   ){
