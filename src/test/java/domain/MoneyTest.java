@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import domain.model.Person;
+
 public class MoneyTest {
 
 	@Test
@@ -109,6 +111,31 @@ public class MoneyTest {
 		assertEquals(Money.dollar(20), result);
 		
 	}
+	
+	@Test
+	public void testIfPeselFormatIsCorrect(){
+		Person person = new Person("96112501544");
+		assertEquals(true, person.checkPesel());
+		assertEquals(true, person.checkPeselLength());
+	}
+	
+	@Test
+	public void testIfGenderCorrect(){
+		Person person = new Person("96112501544");
+		assertEquals(Person.Gender.Female, person.getGender());
+	}
+	
+	@Test
+	public void testIfDayOfBirthCorrect(){
+
+	}
+	
+	@Test
+	public void testIfAgeIsCorrectlyCalculated(){
+
+	}
+	
+
 }
 
 
