@@ -26,30 +26,24 @@ public class Person {
 
 
         if(Character.getNumericValue(getPesel().charAt(2)) > 1  && Character.getNumericValue(getPesel().charAt(2)) < 5 ) {
-            StringBuilder yearOfBirth = new StringBuilder();
-            String sYear = yearOfBirth.append("2" + "0" + getPesel().charAt(0) + getPesel().charAt(1)).toString();
+            String yearOfBirth = ("2" + "0" + getPesel().charAt(0) + getPesel().charAt(1));
 
-
-            StringBuilder monthOfBirth = new StringBuilder();
-            String sMonth = monthOfBirth.append("" + Character.getNumericValue(getPesel().charAt(2)-2) + getPesel().charAt(3)).toString();
+            String monthOfBirth = ("" + Character.getNumericValue(getPesel().charAt(2)-2) + getPesel().charAt(3));
 
 
 
-            return new GregorianCalendar(Integer.valueOf(sYear),Integer.valueOf(sMonth), dayOfBirth());
+            return new GregorianCalendar(Integer.valueOf(yearOfBirth),Integer.valueOf(monthOfBirth),dayOfBirth());
 
         }
         else if (Character.getNumericValue(getPesel().charAt(2)) <= 1)
         {
-            StringBuilder yearOfBirth = new StringBuilder();
-            String sYear = yearOfBirth.append("1" + "9" + getPesel().charAt(0) + getPesel().charAt(1)).toString();
+            String yearOfBirth = ("1" + "9" + getPesel().charAt(0) + getPesel().charAt(1));
 
-            StringBuilder monthOfBirth = new StringBuilder();
-            String sMonth = monthOfBirth.append("" + getPesel().charAt(2) +  getPesel().charAt(3)).toString();
+            String monthOfBirth = ("" + getPesel().charAt(2) +  getPesel().charAt(3));
 
 
 
-
-            return new GregorianCalendar(Integer.valueOf(sYear),Integer.valueOf(sMonth),dayOfBirth());
+            return new GregorianCalendar(Integer.valueOf(yearOfBirth),Integer.valueOf(monthOfBirth),dayOfBirth());
         }
 
         return null;
@@ -57,9 +51,8 @@ public class Person {
     }
 
     private int dayOfBirth(){
-        StringBuilder dayOfBirth = new StringBuilder();
-        String sDay = dayOfBirth.append("" + getPesel().charAt(4) + getPesel().charAt(5)).toString();
-        return  Integer.valueOf(sDay);
+        String dayOfBirth =("" + getPesel().charAt(4) + getPesel().charAt(5));
+        return  Integer.valueOf(dayOfBirth);
     }
 
 	public int getAge(){
