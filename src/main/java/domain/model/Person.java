@@ -27,23 +27,20 @@ public class Person {
 
         if(Character.getNumericValue(getPesel().charAt(2)) > 1  && Character.getNumericValue(getPesel().charAt(2)) < 5 ) {
             String yearOfBirth = ("2" + "0" + getPesel().charAt(0) + getPesel().charAt(1));
-
             String monthOfBirth = ("" + Character.getNumericValue(getPesel().charAt(2)-2) + getPesel().charAt(3));
 
 
-
-            return new GregorianCalendar(Integer.valueOf(yearOfBirth),Integer.valueOf(monthOfBirth),dayOfBirth());
+            return new GregorianCalendar(Integer.valueOf(yearOfBirth),Integer.valueOf(monthOfBirth)-1,dayOfBirth());
 
         }
         else if (Character.getNumericValue(getPesel().charAt(2)) <= 1)
         {
             String yearOfBirth = ("1" + "9" + getPesel().charAt(0) + getPesel().charAt(1));
-
             String monthOfBirth = ("" + getPesel().charAt(2) +  getPesel().charAt(3));
 
 
 
-            return new GregorianCalendar(Integer.valueOf(yearOfBirth),Integer.valueOf(monthOfBirth),dayOfBirth());
+            return new GregorianCalendar(Integer.valueOf(yearOfBirth),Integer.valueOf(monthOfBirth)-1,dayOfBirth());
         }
 
         return null;
