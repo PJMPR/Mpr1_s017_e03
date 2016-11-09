@@ -2,7 +2,10 @@ package domain;
 
 import static org.junit.Assert.*;
 
+import domain.model.Person;
 import org.junit.Test;
+
+import java.text.ParseException;
 
 public class MoneyTest {
 
@@ -109,6 +112,32 @@ public class MoneyTest {
 		assertEquals(Money.dollar(20), result);
 		
 	}
+
+	@Test
+	public void testIfPeselFormatIsCorrect(){
+		Person person = new Person("96112501544");
+		assertEquals(true, person.checkPesel());
+		assertEquals(true, person.checkPeselLength());
+	}
+
+	@Test
+	public void testIfGenderCorrect(){
+		Person person = new Person("96112501544");
+		assertEquals(Person.Gender.Female, person.getGender() );
+	}
+
+	@Test
+	public void testIfDayOfBirthCorrect() throws ParseException{
+		Person person = new Person("96112501544");
+		assertEquals("96/11/25", person.getDayOfBirth());
+	}
+
+	@Test
+	public void testIfAgeCorrectlyCalculated() throws ParseException{
+		Person person = new Person("96112501544");
+		assertEquals(19,person.getAge());
+	}
+
 }
 
 
