@@ -1,7 +1,13 @@
 package domain.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.ParseException;
 import java.util.*;
+
+import static java.util.Calendar.DATE;
+import static java.util.Calendar.MONTH;
+import static java.util.Calendar.YEAR;
 
 public class Person {
 	
@@ -11,9 +17,49 @@ public class Person {
 		this.pesel=pesel;
 	}
 	
-	//public Date getDayOfBirth(){}
+	public String getDayOfBirth() throws ParseException{
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(pesel);
+		char[] cDate= {sb.charAt(0),sb.charAt(1),sb.charAt(2),sb.charAt(3),sb.charAt(4),sb.charAt(5)};
+		String dateFromPesel= String.valueOf(cDate);
+		SimpleDateFormat dt = new SimpleDateFormat("yyMMdd");
+		Date date = dt.parse(dateFromPesel);
+
+		dt.applyPattern("yy/MM/dd");
+		String newDateString = dt.format(date);
+
+		return newDateString;
+	}
 	
-	//public int getAge(){}
+	public int getAge() throws ParseException{
+
+
+		/* bez sensu */
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(pesel);
+		char[] cDate= {sb.charAt(0),sb.charAt(1),sb.charAt(2),sb.charAt(3),sb.charAt(4),sb.charAt(5)};
+		String dateFromPesel= String.valueOf(cDate);
+		SimpleDateFormat dt = new SimpleDateFormat("yyMMdd");
+		Date date = dt.parse(dateFromPesel);
+
+		/* aż dotąd */
+
+
+		Calendar b = Calendar.getInstance();
+		b.getTime();
+		Calendar a = Calendar.getInstance();
+		a.setTime(date);
+
+			int diff = b.get(YEAR) - a.get(YEAR);
+			if (a.get(MONTH) > b.get(MONTH) ||
+					(a.get(MONTH) == b.get(MONTH) && a.get(DATE) > b.get(DATE))) {
+				diff--;
+			}
+			return diff;
+
+	}
 
 
 	
@@ -39,8 +85,6 @@ public class Person {
 		if (pesel.length()==11){return true;}
 		else {return false;}
 	}
-	
-
 
 	public enum Gender{
 	Male,

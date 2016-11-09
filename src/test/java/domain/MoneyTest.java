@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import domain.model.Person;
 import org.junit.Test;
 
+import java.text.ParseException;
+
 public class MoneyTest {
 
 	@Test
@@ -125,13 +127,15 @@ public class MoneyTest {
 	}
 
 	@Test
-	public void testIfDayOfBirthCorrect(){
-
+	public void testIfDayOfBirthCorrect() throws ParseException{
+		Person person = new Person("96112501544");
+		assertEquals("96/11/25", person.getDayOfBirth());
 	}
 
 	@Test
-	public void testIfAgeCorrectlyCalculated(){
-
+	public void testIfAgeCorrectlyCalculated() throws ParseException{
+		Person person = new Person("96112501544");
+		assertEquals(19,person.getAge());
 	}
 
 }
