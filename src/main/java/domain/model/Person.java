@@ -1,28 +1,40 @@
 package domain.model;
 
-import java.util.Date;
 
 public class Person {
 	
-	private String pesel;
-
-	public String getPesel() {
-		return pesel;
+	int idPerson;
+	String name;
+	String surname;
+	String personalNumber;
+	
+	public int getIdPerson() {
+		return idPerson;
 	}
-
-	public void setPesel(String pesel) {
-		this.pesel = pesel;
+	public void setIdPerson(int idPerson) {
+		this.idPerson = idPerson;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSurname() {
+		return surname;
+	}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	public String getPersonalNumber() {
+		return personalNumber;
+	}
+	public void setPersonalNumber(String personalNumber) {
+		this.personalNumber = personalNumber;
 	}
 	
-	//public Date getDayOfBirth(){}
-	
-	//public int getAge(){}
-	//public Gender getGender(){}
-	
-	//public boolean checkPesel(){}
 	
 }
-
-enum Gender{
-	Male, Female
-}
+	
+	
+	
