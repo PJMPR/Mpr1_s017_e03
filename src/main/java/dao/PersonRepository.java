@@ -30,7 +30,7 @@ public class PersonRepository {
 	
 	
 	public PersonRepository(Connection connection) {
-		this.connection = connection;
+		this.setConnection(connection);
 		
 		try {
 			createTable = connection.createStatement();
@@ -76,6 +76,16 @@ public class PersonRepository {
 			ex.printStackTrace();
 		}
 		
+	}
+
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 	
 	

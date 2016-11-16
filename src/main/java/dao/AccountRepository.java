@@ -1,9 +1,12 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import domain.model.Person;
 
 public class AccountRepository {
 	
@@ -15,10 +18,16 @@ private Connection connection;
 			+ "amount DECIMAL," 
 			+ "currency VARCHAR(20),"
 			+ ")";
-	private Statement createTable;
+	private Statement createTable; 
+	
+	String insertSql_A = "INSERT INTO account(person_id,amount,currency) VALUES(?,?,?)";
+	 String deleteSql_A = "DELETE FROM Account WHERE id = ?";
+	
+	PreparedStatement insert_A;
+	PreparedStatement delete_A;
 	
 	public AccountRepository(Connection connection) {
-		this.connection = connection;
+		this.setConnection(connection);
 		
 		try {
 			createTable = connection.createStatement();
@@ -29,16 +38,45 @@ private Connection connection;
 				if(rs.getString("TABLE_NAME").equalsIgnoreCase("account")){
 					tableExists=true;
 					break;
-				}
+				} 
+				
+				
+				
+				
 			}
 			if(!tableExists)
-				createTable.executeUpdate(createTableSql);
+				createTable.executeUpdate(createTableSql); 
+			
+			insert_A = connection.prepareStatement(insertSql_A);
+			delete_A = connection.prepareStatement(deleteSql_A);
 				
 			
 			
-		} catch (SQLException e) {
+		} 
+		
+		public void delete(Person p){
+			try{
+				delete_A.setInt(1, p.getId());
+				delete_A.executeUpdate();
+			}catch(SQLException ex){
+				ex.printStackTrace();
+			}
+		
+		
+		
+		
+		
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 
 }
