@@ -1,12 +1,9 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import domain.model.Person;
 
 public class PersonRepository {
 
@@ -17,17 +14,7 @@ public class PersonRepository {
 			+ "name VARCHAR(20),"
 			+ "surname VARCHAR(50)"
 			+ ")";
-	
 	private Statement createTable;
-	
-	
-	private String insertSql = "INSERT INTO person(name,surname) VALUES(?,?)";
-	private String deleteSql = "DELETE FROM Person WHERE id = ?";
-	
-	private PreparedStatement insert;
-	private PreparedStatement delete;
-
-	
 	
 	public PersonRepository(Connection connection) {
 		this.connection = connection;
@@ -45,44 +32,13 @@ public class PersonRepository {
 			}
 			if(!tableExists)
 				createTable.executeUpdate(createTableSql);
-			
-			insert = connection.prepareStatement(insertSql);
-			delete = connection.prepareStatement(deleteSql);	
+				
 			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
-
-	public void delete(Person p){
-		try{
-			delete.setInt(1, p.getId());
-			delete.executeUpdate();
-		}catch(SQLException ex){
-			ex.printStackTrace();
-		}
-	}
-	
-	public void add(Person p){
-		try{
-			
-			insert.setString(1, p.getName());
-			insert.setString(2, p.getSurname());
-			insert.executeUpdate();
-			
-		}catch(SQLException ex){
-			ex.printStackTrace();
-		}
-		
-	}
-	
-	
-	
-	
-	
-	
 	
 	
 	

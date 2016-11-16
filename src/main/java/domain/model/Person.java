@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Person {
 
-	private int id;
 	private String name;
 	private String surname;
 	private List<Account> accounts;
@@ -26,12 +25,6 @@ public class Person {
 	}
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 }
