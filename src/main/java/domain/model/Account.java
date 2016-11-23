@@ -2,7 +2,7 @@ package domain.model;
 
 import java.util.List;
 
-public class Account {
+public class Account implements IHaveId{
 	
 	private int id;
 	private int personId;
