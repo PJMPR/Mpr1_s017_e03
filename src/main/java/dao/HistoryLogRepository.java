@@ -30,7 +30,7 @@ public class HistoryLogRepository {
 
 	private String insertSql = "INSERT INTO historyLog(date,amount,accountfrom,accountto,rate,operation) VALUES(?,?,?,?,?,?)";
 	private String deleteSql = "DELETE FROM historyLog WHERE id = ?";
-	private String updateSql = "UPDATE FROM historyLog WHERE id = ?";
+	private String updateSql = "UPDATE historyLog set(date=?,amount=?,accountfrom=?,accountto=?,rate=?,operation=?) WHERE id = ?";
 	private String selectByIdSql = "SELECT * FROM historyLog WHERE id=?";
 	private String selectAllSql = "SELECT * FROM historyLog";
 	
