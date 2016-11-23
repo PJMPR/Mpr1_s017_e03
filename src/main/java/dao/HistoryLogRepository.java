@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import domain.model.Account;
 import domain.model.HistoryLog;
 import domain.model.Person;
 
@@ -20,16 +23,22 @@ public class HistoryLogRepository {
 			+ "accountfrom BIGINT,"
 			+ "accountto BIGINT,"
 			+ "rate DECIMAL(7,2),"
-			+ "operation BIGINT"
+			+ "operation int"
 			+ ")";
 	
 	private Statement createTable;
 
 	private String insertSql = "INSERT INTO historyLog(date,amount,accountfrom,accountto,rate,operation) VALUES(?,?,?,?,?,?)";
 	private String deleteSql = "DELETE FROM historyLog WHERE id = ?";
+	private String updateSql = "UPDATE FROM historyLog WHERE id = ?";
+	private String selectByIdSql = "SELECT * FROM historyLog WHERE id=?";
+	private String selectAllSql = "SELECT * FROM historyLog";
 	
 	private PreparedStatement insert;
 	private PreparedStatement delete;
+	private PreparedStatement update;
+	private PreparedStatement selectById;
+	private PreparedStatement selectAll;
 	
 	public HistoryLogRepository(Connection connection) {
 		this.connection = connection;
@@ -47,7 +56,11 @@ public class HistoryLogRepository {
 			}
 			if(!tableExists)
 				createTable.executeUpdate(createTableSql);
-				
+			insert = connection.prepareStatement(insertSql);
+			delete = connection.prepareStatement(deleteSql);	
+			update = connection.prepareStatement(updateSql);
+			selectById = connection.prepareStatement(selectByIdSql);
+			selectAll = connection.prepareStatement(selectAllSql);
 			
 			
 		} catch (SQLException e) {
@@ -69,8 +82,8 @@ public class HistoryLogRepository {
 			
 			insert.setString(1, p.getDate().toString());
 			insert.setDouble(2, p.getAmount());
-			insert.setInt(3, p.getFrom().getId());
-			insert.setInt(4, p.getTo().getId());
+			insert.setInt(3, p.getFrom());
+			insert.setInt(4, p.getTo());
 			insert.setDouble(5, p.getRate());
 			insert.setInt(6, p.getType().ordinal());
 			insert.executeUpdate();
@@ -80,5 +93,69 @@ public class HistoryLogRepository {
 		}
 		
 	}
+	public List<HistoryLog> getAll(){
+		try{
+			List<HistoryLog> result = new ArrayList<HistoryLog>();
+			ResultSet rs = selectAll.executeQuery();
+			while(rs.next()){
+				HistoryLog l = new HistoryLog();
+				l.setId(rs.getInt("id"));
+				l.setDate(rs.getDate("date"));
+				l.setAmount(rs.getDouble("amount"));
+				l.setFrom(rs.getInt("accountfrom"));
+				l.setTo(rs.getInt("accountto"));
+				l.setRate(rs.getDouble("rate"));
+				
+				result.add(l);
+			}
+			return result;
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		return null;
+	}
+	public HistoryLog get(int HistoryLog){
+		try{
+			
+			selectById.setInt(1, HistoryLog);
+			ResultSet rs = selectById.executeQuery();
+			while(rs.next()){
+				HistoryLog l = new HistoryLog();
+				l.setId(rs.getInt("id"));
+				l.setDate(rs.getDate("date"));
+				l.setAmount(rs.getDouble("amount"));
+				l.setFrom(rs.getInt("accountfrom"));
+				l.setTo(rs.getInt("accountto"));
+				l.setRate(rs.getDouble("rate"));
+				
+				return l;
+			}
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	public void update(HistoryLog p){
+		try{
+			
+			update.setString(1, p.getDate().toString());
+			update.setDouble(2, p.getAmount());
+			update.setInt(3, p.getFrom());
+			update.setInt(4, p.getTo());
+			update.setDouble(5, p.getRate());
+			update.setInt(6, p.getType().ordinal());
+			update.executeUpdate();
+			
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}
+	
 	
 }
+}
+	
+

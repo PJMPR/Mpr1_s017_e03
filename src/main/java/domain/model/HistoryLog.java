@@ -9,8 +9,8 @@ public class HistoryLog {
 	private Account account;
 	private Date date;
 	private double amount;
-	private Account from;
-	private Account to;
+	private int from;
+	private int to;
 	private double rate;
 	private Operation type;
 	
@@ -38,16 +38,16 @@ public class HistoryLog {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	public Account getFrom() {
+	public int getFrom() {
 		return from;
 	}
-	public void setFrom(Account from) {
+	public void setFrom(int from) {
 		this.from = from;
 	}
-	public Account getTo() {
+	public int getTo() {
 		return to;
 	}
-	public void setTo(Account to) {
+	public void setTo(int to) {
 		this.to = to;
 	}
 	public double getRate() {
