@@ -1,64 +1,22 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
+import dao.mappers.IMapResultSetIntoEntity;
 import domain.model.HistoryLog;
 
 public class HistoryLogRepository extends RepositoryBase<HistoryLog> {
 	
-	public HistoryLogRepository(Connection connection) {
-		super(connection);
+	public HistoryLogRepository(Connection connection, IMapResultSetIntoEntity<HistoryLog> mapper) {
+		super(connection, mapper);
 	}
-	
-	public HistoryLog get(int historyLogId){
-		try{
-			
-			selectById.setInt(1, historyLogId);
-			ResultSet rs = selectById.executeQuery();
-			while(rs.next()){
-				HistoryLog result = new HistoryLog();
-				result.setId(historyLogId);
-				result.setAmount(rs.getDouble("amount"));
-				return result;
-			}
-		}
-		catch(SQLException ex){
-			ex.printStackTrace();
-		}
-		return null;
-	}
-	
-	public List<HistoryLog> getAll(){
-		try{
-			List<HistoryLog> result = new ArrayList<HistoryLog>();
-			ResultSet rs = selectAll.executeQuery();
-			while(rs.next()){
-				HistoryLog h = new HistoryLog();
-				//h.setId(rs.getInt("id"));
-				//h.setName(rs.getString("name"));
-				//h.setSurname(rs.getString("surname"));
-				result.add(h);
-			}
-			return result;
-		}
-		catch(SQLException ex){
-			ex.printStackTrace();
-		}
-		return null;
-	}
-	
 	
 	@Override
 	protected String tableName() {
-		return "historyLog";
+		return "HistoryLog";
 	}
-
+	
 	@Override
 	protected String createTableSql() {
 		return "CREATE TABLE historyLog("
