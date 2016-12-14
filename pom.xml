@@ -5,7 +5,7 @@
   <groupId>currencyCalculator</groupId>
   <artifactId>currencyCalculator</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <name>currencyCalculator</name>
   <url>http://maven.apache.org</url>
