@@ -24,7 +24,8 @@ public class ServletAddAccount extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<h1>Choosen currency: "
 				+ currency
-				+ "Choosen value"
+				+ "</br>"
+				+ "Choosen value: "
 				+ value
 				+ "</h1>");
 		out.close();
