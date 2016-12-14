@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns="/test")
 public class TestServlet extends HttpServlet{
@@ -19,10 +20,19 @@ public class TestServlet extends HttpServlet{
 		
 		response.setContentType("text/html");
 		
+		HttpSession session = request.getSession();
 		String name = request.getParameter("name");
+		
+		if(name!=null && !name.equals("")){
+			session.setAttribute("name", name);
+		}
+		
 		PrintWriter out = response.getWriter();
-		out.println("<h1>Imię to: "
+		out.println("<h1>Imię (request): "
 				+ name 
+				+ "</h1>");
+		out.println("<h1>Imię (session): "
+				+ session.getAttribute("name") 
 				+ "</h1>");
 		out.close();
 	}
