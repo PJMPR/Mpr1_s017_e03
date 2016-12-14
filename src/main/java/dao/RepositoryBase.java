@@ -27,7 +27,8 @@ public abstract class RepositoryBase<TEntity extends IHaveId>
 	protected PreparedStatement update;
 	protected PreparedStatement selectById;
 	protected PreparedStatement selectAll;
-	
+	protected PreparedStatement selectLast;
+
 	protected IMapResultSetIntoEntity<TEntity> mapper;
 
 	protected RepositoryBase(Connection connection, 
@@ -44,12 +45,27 @@ public abstract class RepositoryBase<TEntity extends IHaveId>
 			update = connection.prepareStatement(updateSql());
 			selectById = connection.prepareStatement(selectByIdSql());
 			selectAll = connection.prepareStatement(selectAllSql());
+			selectLast = connection.prepareStatement(selectLastSql());
+
 			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+	public  TEntity getLast(){
+		try{
+			ResultSet rs = selectLast.executeQuery();
+			while (rs.next()){
+				return mapper.map(rs);
+			}
+		}catch (SQLException ex){
+			ex.printStackTrace();
+		}
+		return null;
+	}
+
+
 	public TEntity get(int personId){
 		try{
 			
@@ -149,7 +165,7 @@ public abstract class RepositoryBase<TEntity extends IHaveId>
 				+ tableName()
 				+ " WHERE id=?";
 	}
-
+	protected String selectLastSql() { return "SELECT * FROM " + tableName() + " ORDER BY ID DESC LIMIT 1";}
 	protected String selectAllSql() {
 		return "SELECT * FROM " + tableName();
 	}
