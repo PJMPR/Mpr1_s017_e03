@@ -9,6 +9,7 @@ public class Person implements IHaveId{
 	private String name;
 	private String surname;
 	private List<Account> accounts;
+	
 	public String getName() {
 		return name;
 	}
