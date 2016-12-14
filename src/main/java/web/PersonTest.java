@@ -24,13 +24,15 @@ private static final long serialVersionUID = 1L;
 		HttpSession session = request.getSession();
 		String nameSession = request.getParameter("name");
 		String surnameSession = request.getParameter("surname");
-		if (nameSession!= null && !nameSession.equals("") && surnameSession!= null && !surnameSession.equals((""))){
-			session.setAttribute("name", nameSession);
-			session.setAttribute("surname",surnameSession);
+
+        Person person = new Person();
+        person.setName(nameSession);
+        person.setSurname(surnameSession);
+
+
+		if (   !person.getName().equals("") && !person.getSurname().equals("") && !person.getName().equals(null) && !person.getSurname().equals(null)){
+			session.setAttribute("person", person);
 		}
-		Person person = new Person();
-		person.setName(nameSession);
-		person.setSurname(surnameSession);
 
 
 		String name = request.getParameter("name");
