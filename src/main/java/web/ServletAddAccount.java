@@ -34,7 +34,15 @@ public class ServletAddAccount extends HttpServlet {
 			account.setAmount(Double.parseDouble(amount));
 			account.setCurrency(currency);
 			account.setPerson(person);
-			session.setAttribute("account", account);
+			session.setAttribute("account", account);		
+      PrintWriter out = response.getWriter();
+      out.println("<h1>Choosen currency: "
+          + currency
+          + "</br>"
+          + "Choosen amount: "
+          + amount
+          + "</h1>");
+      out.close();
 		}
 		else{
 			response.sendRedirect("/addPerson.html");
