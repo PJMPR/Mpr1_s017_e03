@@ -20,13 +20,13 @@ public class ServletAddAccount extends HttpServlet {
 		response.setContentType("text/html");
 
 		String currency = request.getParameter("currency");
-		String value = request.getParameter("value");
+		String amount = request.getParameter("amount");
 		PrintWriter out = response.getWriter();
 		out.println("<h1>Choosen currency: "
 				+ currency
 				+ "</br>"
-				+ "Choosen value: "
-				+ value
+				+ "Choosen amount: "
+				+ amount
 				+ "</h1>");
 		out.close();
 	}
