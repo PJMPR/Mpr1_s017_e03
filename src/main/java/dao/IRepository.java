@@ -16,6 +16,6 @@ public interface IRepository<TEntity extends IHaveId> {
 
 	public void delete(TEntity entity);
 
-	public int getLast();
+	public int getMaxId();
 
 }
