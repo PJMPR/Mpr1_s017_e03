@@ -27,14 +27,6 @@ public class ServletAddAccount extends HttpServlet {
 
 		String currency = request.getParameter("currency");
 		String amount = request.getParameter("amount");
-		PrintWriter out = response.getWriter();
-		out.println("<h1>Choosen currency: "
-				+ currency
-				+ "</br>"
-				+ "Choosen amount: "
-				+ amount
-				+ "</h1>");
-		out.close();
 		
 		Person person = (Person) session.getAttribute("person");
 		if(person != null){
@@ -42,7 +34,18 @@ public class ServletAddAccount extends HttpServlet {
 			account.setAmount(Double.parseDouble(amount));
 			account.setCurrency(currency);
 			account.setPerson(person);
-			session.setAttribute("account", account);
+			session.setAttribute("account", account);		
+      PrintWriter out = response.getWriter();
+      out.println("<h1>Choosen currency: "
+          + currency
+          + "</br>"
+          + "Choosen amount: "
+          + amount
+          + "</h1>");
+      out.close();
+		}
+		else{
+			response.sendRedirect("/addPerson.html");
 		}
 	}
 	
