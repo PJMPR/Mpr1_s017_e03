@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns="/test")
-public class TestServlet extends HttpServlet{
+public class PersonTest extends HttpServlet{
 
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 	@Override
 	protected void doGet(HttpServletRequest request, 
@@ -20,12 +20,14 @@ public class TestServlet extends HttpServlet{
 		response.setContentType("text/html");
 		
 		String name = request.getParameter("name");
+		String surname = request.getParameter("surname");
 		PrintWriter out = response.getWriter();
-		out.println("<h1>Imię to: "
-				+ name 
-				+ "</h1>");
+		out.println("Imie: "
+				+ name
+				+"</br>"
+				+ "Nazwisko: "
+				+ surname);
 		out.close();
 	}
 	
-
 }
