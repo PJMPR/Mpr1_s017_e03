@@ -1,5 +1,7 @@
 package web;
 
+import domain.model.Person;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -26,6 +28,10 @@ private static final long serialVersionUID = 1L;
 			session.setAttribute("name", nameSession);
 			session.setAttribute("surname",surnameSession);
 		}
+		Person person = new Person();
+		person.setName(nameSession);
+		person.setSurname(surnameSession);
+
 
 		String name = request.getParameter("name");
 		String surname = request.getParameter("surname");
