@@ -53,16 +53,16 @@ public abstract class RepositoryBase<TEntity extends IHaveId>
 			e.printStackTrace();
 		}
 	}
-	public  TEntity getLast(){
+	public  int getMaxId(){
 		try{
 			ResultSet rs = selectLast.executeQuery();
 			while (rs.next()){
-				return mapper.map(rs);
+				return (rs.getInt("Id"));
 			}
 		}catch (SQLException ex){
 			ex.printStackTrace();
 		}
-		return null;
+		return 0;
 	}
 
 
@@ -165,7 +165,7 @@ public abstract class RepositoryBase<TEntity extends IHaveId>
 				+ tableName()
 				+ " WHERE id=?";
 	}
-	protected String selectLastSql() { return "SELECT MAX(id) FROM " + tableName() + " LIMIT 1";}
+	protected String selectLastSql() { return "SELECT MAX(id) as Id FROM " + tableName() + " LIMIT 1";}
 	protected String selectAllSql() {
 		return "SELECT * FROM " + tableName();
 	}
