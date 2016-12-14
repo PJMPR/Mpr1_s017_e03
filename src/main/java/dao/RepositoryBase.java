@@ -165,7 +165,7 @@ public abstract class RepositoryBase<TEntity extends IHaveId>
 				+ tableName()
 				+ " WHERE id=?";
 	}
-	protected String selectLastSql() { return "SELECT * FROM " + tableName() + " ORDER BY ID DESC LIMIT 1";}
+	protected String selectLastSql() { return "SELECT MAX(id) FROM " + tableName() + " LIMIT 1";}
 	protected String selectAllSql() {
 		return "SELECT * FROM " + tableName();
 	}
