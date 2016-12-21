@@ -46,7 +46,7 @@ public class AddAccountHttpServlet extends HttpServlet {
 		if(session.getAttribute("accounts")!=null)
 			accounts =(List<Account>) session.getAttribute("accounts");
 		accounts.add(account);
-
+		session.setAttribute("accounts", accounts);
 		response.sendRedirect("/addAccount.html");
 
 	}
