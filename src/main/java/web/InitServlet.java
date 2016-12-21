@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.Constants;
 import dao.IRepositoryCatalog;
 import dao.RepositoryCatalog;
 import domain.model.EnumDictionary;
@@ -19,7 +20,7 @@ public class InitServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		IRepositoryCatalog catalog = new RepositoryCatalog("jdbc:hsqldb:hsql://localhost/workdb");
+		IRepositoryCatalog catalog = new RepositoryCatalog(Constants.db_url);
 		
 		{
 			EnumDictionary dict1 = new EnumDictionary();

@@ -1,7 +1,10 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.mappers.IMapResultSetIntoEntity;
@@ -11,12 +14,18 @@ import domain.model.EnumDictionary;
 public  class EnumDictionaryRepository extends RepositoryBase<EnumDictionary>
 	implements IEnumRepository{
 
-	
+	protected PreparedStatement selectByEnumerationName;
 	
 	public EnumDictionaryRepository(Connection connection, 
 			IMapResultSetIntoEntity<EnumDictionary> mapper,
 			IUnitOfWork uow) {
 		super(connection, mapper, uow);
+		try {
+			selectByEnumerationName = connection.prepareStatement(selectByEnumerationNameSql());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -66,11 +75,24 @@ public  class EnumDictionaryRepository extends RepositoryBase<EnumDictionary>
 		update.setString(4, entity.getEnumName());		
 	}
 
-
+	protected String selectByEnumerationNameSql() {
+		return "SELECT * FROM enumDictionary WHERE enumName = ?";
+	}
 
 	public List<EnumDictionary> byEnumerationName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			List<EnumDictionary> result = new ArrayList<EnumDictionary>();
+			selectByEnumerationName.setString(1, name);
+			ResultSet rs = selectByEnumerationName.executeQuery();
+			while(rs.next())
+			{
+				result.add(mapper.map(rs));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 
