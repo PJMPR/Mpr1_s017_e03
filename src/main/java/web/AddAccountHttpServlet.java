@@ -42,9 +42,9 @@ public class AddAccountHttpServlet extends HttpServlet {
 		account.setAmount(Integer.parseInt(amount));
 		account.setCurrency(currency);
 		account.setPerson(person);
-		List <Account> accounts = new ArrayList<Account>();
-		accounts.add(account);
-		session.setAttribute("accounts", accounts);
+		List <Account> accountList = new ArrayList<Account>();
+		accountList.add(account);
+		session.setAttribute("accounts", accountList);
 		response.sendRedirect("/addAccount.html");
 	}
 
