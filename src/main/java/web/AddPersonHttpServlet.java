@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns="/addPerson")
-public class PersonTest extends HttpServlet{
+public class AddPersonHttpServlet extends HttpServlet{
 
 private static final long serialVersionUID = 1L;
 	
@@ -24,13 +24,18 @@ private static final long serialVersionUID = 1L;
 		HttpSession session = request.getSession();
 		String nameSession = request.getParameter("name");
 		String surnameSession = request.getParameter("surname");
-
+		//sprawdzic atrybuty
         Person person = new Person();
         person.setName(nameSession);
         person.setSurname(surnameSession);
 
 
-		if (   !person.getName().equals("") && !person.getSurname().equals("") && !person.getName().equals(null) && !person.getSurname().equals(null)){
+		if (   !person.getName().equals("") 
+				&& !person.getSurname().equals("") 
+				&& !person.getName().equals(null) 
+				&& !person.getSurname().equals(null)
+				)
+		{
 			session.setAttribute("person", person);
 		}
 
@@ -38,6 +43,7 @@ private static final long serialVersionUID = 1L;
 		String name = request.getParameter("name");
 		String surname = request.getParameter("surname");
 		PrintWriter out = response.getWriter();
+		//przekierowanie do addAccount
 		out.println("Imie: "
 				+ name
 				+"</br>"
