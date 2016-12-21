@@ -33,7 +33,7 @@ public class OverviewFilter implements Filter{
 		
 		HttpSession session = req.getSession();
 	
-		List<Account> accounts =(List<Account>)session.getAttribute("AccountList") ;
+		List<Account> accounts =(List<Account>)session.getAttribute("accounts") ;
 		if (accounts == null || accounts.size() == 0){
 			
 			resp.sendRedirect("addAccount.html");
