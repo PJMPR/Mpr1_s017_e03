@@ -13,7 +13,7 @@ import domain.model.Account;
 import domain.model.Person;
 
 @WebServlet(urlPatterns="/addAccount")
-public class ServletAddAccount extends HttpServlet {
+public class AddAccountHttpServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -27,8 +27,12 @@ public class ServletAddAccount extends HttpServlet {
 
 		String currency = request.getParameter("currency");
 		String amount = request.getParameter("amount");
+		// sprawdzic parametry url
 		
 		Person person = (Person) session.getAttribute("person");
+		// sprawdzic czy jest person
+		//jesli nie to przekierowac na addPerson
+		
 		if(person != null){
 			Account account = new Account();
 			account.setAmount(Double.parseDouble(amount));

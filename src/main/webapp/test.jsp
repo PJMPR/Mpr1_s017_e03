@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<%!
+	void DoSomething()
+	{
+	
+	}
+%>
+
 <%
 	List<String> fruits = new ArrayList<String>();
 	fruits.add("apple");
@@ -20,6 +27,10 @@
 	<ol>
 		<%for(String fruit: fruits){ %>
 		<li><%=fruit %></li>
+		<% 
+		
+			
+		DoSomething(); %>
 		<%} 
 		%>
 	</ol>
