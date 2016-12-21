@@ -5,6 +5,8 @@ import domain.model.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.Servlet;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,38 +20,25 @@ private static final long serialVersionUID = 1L;
 	
 	@Override
 	protected void doGet(HttpServletRequest request, 
-			HttpServletResponse response) throws IOException{
-		
+			HttpServletResponse response) throws IOException {
+
 		response.setContentType("text/html");
 		HttpSession session = request.getSession();
 		String nameSession = request.getParameter("name");
 		String surnameSession = request.getParameter("surname");
-		//sprawdzic atrybuty
-        Person person = new Person();
-        person.setName(nameSession);
-        person.setSurname(surnameSession);
+
+		if (nameSession != null && !nameSession.equals("") && surnameSession != null && !surnameSession.equals("")) {
 
 
-		if (   !person.getName().equals("") 
-				&& !person.getSurname().equals("") 
-				&& !person.getName().equals(null) 
-				&& !person.getSurname().equals(null)
-				)
-		{
-			session.setAttribute("person", person);
-		}
+		Person person = new Person();
+		person.setName(nameSession);
+		person.setSurname(surnameSession);
+		session.setAttribute("person", person);
+			response.sendRedirect("/addAccount.html");
+	}
 
 
-		String name = request.getParameter("name");
-		String surname = request.getParameter("surname");
-		PrintWriter out = response.getWriter();
-		//przekierowanie do addAccount
-		out.println("Imie: "
-				+ name
-				+"</br>"
-				+ "Nazwisko: "
-				+ surname);
-		out.close();
+
 	}
 	
 }
