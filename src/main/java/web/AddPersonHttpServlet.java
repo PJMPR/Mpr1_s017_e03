@@ -36,6 +36,9 @@ private static final long serialVersionUID = 1L;
 		session.setAttribute("person", person);
 			response.sendRedirect("/addAccount.html");
 	}
+	else {
+			response.sendRedirect("/addPerson.html");
+		}
 
 
 
