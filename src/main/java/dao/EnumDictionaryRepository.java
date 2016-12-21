@@ -80,8 +80,8 @@ public  class EnumDictionaryRepository extends RepositoryBase<EnumDictionary>
 	}
 
 	public List<EnumDictionary> byEnumerationName(String name) {
+		List<EnumDictionary> result = new ArrayList<EnumDictionary>();
 		try {
-			List<EnumDictionary> result = new ArrayList<EnumDictionary>();
 			selectByEnumerationName.setString(1, name);
 			ResultSet rs = selectByEnumerationName.executeQuery();
 			while(rs.next())
