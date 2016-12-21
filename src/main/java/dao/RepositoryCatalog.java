@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import dao.mappers.AccountMapper;
@@ -8,12 +9,25 @@ import dao.mappers.EnumDirectoryMapper;
 import dao.mappers.HistoryLogMapper;
 import dao.mappers.PersonMapper;
 import dao.uow.IUnitOfWork;
+import dao.uow.UnitOfWork;
 
 public class RepositoryCatalog implements IRepositoryCatalog{
 
 	IUnitOfWork uow;
 	Connection connection;
 	
+	public RepositoryCatalog(String url) {
+		super();
+		try {
+			this.connection = DriverManager.getConnection(url);
+			this.uow = new UnitOfWork(this.connection);
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public RepositoryCatalog(IUnitOfWork uow, Connection connection) {
 		super();
