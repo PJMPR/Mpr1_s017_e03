@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import domain.model.Account;
 
-@WebFilter(urlPatterns={"overview.jsp"})
+@WebFilter(urlPatterns={"/overview.jsp"})
 public class OverviewFilter implements Filter{
 
 	public void destroy() {
