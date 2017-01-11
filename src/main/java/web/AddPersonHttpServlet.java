@@ -34,10 +34,10 @@ private static final long serialVersionUID = 1L;
 		person.setName(nameSession);
 		person.setSurname(surnameSession);
 		session.setAttribute("person", person);
-			response.sendRedirect("/addAccount.html");
+			response.sendRedirect("addAccount.html");
 	}
 	else {
-			response.sendRedirect("/addPerson.html");
+			response.sendRedirect("addPerson.html");
 		}
 
 

@@ -30,12 +30,12 @@ public class AddAccountHttpServlet extends HttpServlet {
 		String amount = request.getParameter("amount");
 		// sprawdzic parametry url
 		if (currency == null  || currency.equals("") ||amount==null || amount.equals("")) {
-			response.sendRedirect("/addAccount.html");
+			response.sendRedirect("addAccount.html");
 		} 
 			Person person = (Person) session.getAttribute("person");
 		
 		if (person == null) {
-			response.sendRedirect("/addPerson.html");
+			response.sendRedirect("addPerson.html");
 		}
 		
 		Account account = new Account();
@@ -47,7 +47,7 @@ public class AddAccountHttpServlet extends HttpServlet {
 			accounts =(List<Account>) session.getAttribute("accounts");
 		accounts.add(account);
 		session.setAttribute("accounts", accounts);
-		response.sendRedirect("/addAccount.html");
+		response.sendRedirect("addAccount.html");
 
 	}
 

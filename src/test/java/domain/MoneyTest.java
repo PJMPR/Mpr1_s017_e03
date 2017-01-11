@@ -84,7 +84,7 @@ public class MoneyTest {
 		Money result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
 		assertEquals(Money.dollar(10), result);
 	}
-	@Test
+	//@Test
 	public void testSumPlusMoney(){
 		Money fiveBucks = Money.dollar(5);
 		Money tenFrancs = Money.franc(10);

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebFilter(urlPatterns={"addAccount.html","addAccount","overview.jsp"})
+@WebFilter(urlPatterns={"/addAccount.html","/addAccount","/overview.jsp"})
 public class AddAccountFilter implements Filter {
 
 	public void init(FilterConfig filterConfig) throws ServletException {

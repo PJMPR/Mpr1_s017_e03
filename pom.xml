@@ -38,6 +38,7 @@
     
   </dependencies>
   <build>
+  <finalName>currencyapp</finalName>
   	<plugins>
   		<plugin>
 		  <groupId>org.mortbay.jetty</groupId>
