@@ -1,6 +1,7 @@
 package web;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,12 @@ public class InitServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		IRepositoryCatalog catalog = new RepositoryCatalog("jdbc:hsqldb:hsql://localhost/workdb");
+		IRepositoryCatalog catalog = null;
+		try {
+			catalog= new RepositoryCatalog("jdbc:hsqldb:hsql://localhost/workdb");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		{
 			EnumDictionary dict1 = new EnumDictionary();

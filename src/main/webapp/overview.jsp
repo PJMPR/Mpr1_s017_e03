@@ -21,6 +21,6 @@
 		<li><%=account.getCurrency() %> <%=account.getAmount()%></li>
 		<%}%>
 	</ol>
-	
+	<a href="/finalize">Save</a>
 </body>
 </html>
