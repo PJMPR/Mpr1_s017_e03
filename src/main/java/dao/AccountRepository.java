@@ -62,17 +62,17 @@ public class AccountRepository extends RepositoryBase<Account>
 	
 	@Override
 	protected void setupInsert(Account entity) throws SQLException {
-		insert.setDouble(1, entity.getAmount());
-		insert.setString(2, entity.getCurrency());
-		update.setInt(3, entity.getPersonId());
+		insert.setInt(1, entity.getPersonId());
+		insert.setDouble(2, entity.getAmount());
+		insert.setString(3, entity.getCurrency());
 		
 	}
 
 	@Override
 	protected void setupUpdate(Account entity) throws SQLException {
-		update.setDouble(1, entity.getAmount());
-		update.setString(2, entity.getCurrency());
-		update.setInt(3, entity.getPersonId());
+		update.setInt(1, entity.getPersonId());
+		update.setDouble(2, entity.getAmount());
+		update.setString(3, entity.getCurrency());
 
 }
 

@@ -16,17 +16,10 @@ public class RepositoryCatalog implements IRepositoryCatalog{
 	IUnitOfWork uow;
 	Connection connection;
 	
-	public RepositoryCatalog(String url) {
+	public RepositoryCatalog(String url) throws SQLException {
 		super();
-		try {
 			this.connection = DriverManager.getConnection(url);
 			this.uow = new UnitOfWork(this.connection);
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public RepositoryCatalog(IUnitOfWork uow, Connection connection) {
@@ -37,27 +30,37 @@ public class RepositoryCatalog implements IRepositoryCatalog{
 
 	
 	public IPersonRepository people() {
-		return new PersonRepository(connection, new PersonMapper(), uow);
+		return new PersonRepository(this.connection, new PersonMapper(), this.uow);
 	}
 
 	public IAccountRepository accounts() {
-		return new AccountRepository(connection, new AccountMapper(), people(), uow);
+		return new AccountRepository(this.connection, new AccountMapper(), people(), this.uow);
 	}
 
 	public IEnumRepository dictionaries() {
-		return new EnumDictionaryRepository(connection, new EnumDirectoryMapper(), uow);
+		return new EnumDictionaryRepository(this.connection, new EnumDirectoryMapper(), this.uow);
 	}
 
 	public IHistoryRepository history() {
-		return new HistoryLogRepository(connection, new HistoryLogMapper(), uow);
+		return new HistoryLogRepository(this.connection, new HistoryLogMapper(), this.uow);
 	}
 
 	public void saveAndClose() {
 		try{
-		uow.commit();
-		connection.close();
+		this.uow.commit();
+		this.connection.close();
 		}catch(SQLException ex){
 			ex.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void save() {
+		try {
+			this.uow.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 	}

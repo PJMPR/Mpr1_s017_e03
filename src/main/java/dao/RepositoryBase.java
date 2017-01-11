@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import dao.mappers.IMapResultSetIntoEntity;
 import dao.uow.Entity;
 import dao.uow.IUnitOfWork;
 import dao.uow.IUnitOfWorkRepository;
+import dao.uow.UnitOfWork;
 import domain.model.IHaveId;
 
 public abstract class RepositoryBase<TEntity extends IHaveId> 
@@ -36,6 +38,7 @@ public abstract class RepositoryBase<TEntity extends IHaveId>
 			IUnitOfWork uow) {
 		this.uow = uow;
 		this.connection = connection;
+		
 		this.mapper = mapper;
 		try {
 			createTable = connection.createStatement();

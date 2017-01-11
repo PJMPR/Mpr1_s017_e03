@@ -6,7 +6,7 @@ public interface IRepositoryCatalog {
 	public IAccountRepository accounts();
 	public IEnumRepository dictionaries();
 	public IHistoryRepository history();
-	
+	public void save();
 	public void saveAndClose();
 	
 }
