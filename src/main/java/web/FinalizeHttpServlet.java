@@ -33,6 +33,7 @@ private static final long serialVersionUID = 1L;
 		
 		IRepositoryCatalog catalog;
 		try {
+			Class.forName("org.hsqldb.jdbcDriver");
 			catalog = new RepositoryCatalog("jdbc:hsqldb:hsql://localhost/workdb");
 			Person person = (Person)session.getAttribute("person");
 			List<Account> accounts = (List<Account>)session.getAttribute("accounts");
@@ -49,7 +50,7 @@ private static final long serialVersionUID = 1L;
 			session.removeAttribute("person");
 			session.removeAttribute("accounts");
 			response.sendRedirect("/");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
