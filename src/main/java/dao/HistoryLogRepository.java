@@ -85,7 +85,6 @@ public class HistoryLogRepository extends RepositoryBase<HistoryLog>
 		update.setInt(4, entity.getTo().getId());
 		update.setDouble(5, entity.getRate());
 		
-		
 	}
 
 
