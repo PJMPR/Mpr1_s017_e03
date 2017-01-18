@@ -2,10 +2,20 @@ package domain.model;
 
 import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
+@NamedQueries({
+	@NamedQuery(name = "account.all", query = "SELECT a FROM Account a"),
+	@NamedQuery(name = "account.id", query = "FROM Account a where a.id=:accountId")
+})
 public class Account implements IHaveId{
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int personId;
+	@ManyToOne
 	private Person person;
 	
 	

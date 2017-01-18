@@ -3,17 +3,17 @@ package domain.model;
 import java.util.List;
 
 import javax.annotation.Generated;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "person.all", query = "SELECT p FROM Person p"),
+	@NamedQuery(name = "person.id", query = "FROM Person p where p.id=:personId")
+})
 public class Person implements IHaveId{
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String surname;
@@ -33,6 +33,7 @@ public class Person implements IHaveId{
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
+	@OneToMany(mappedBy="person")
 	public List<Account> getAccounts() {
 		return accounts;
 	}
