@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,9 +20,12 @@ import domain.model.Person;
 @Path("people")
 public class PersonService {
 	IRepositoryCatalog catalog;
+	
+	@PersistenceContext
+	EntityManager mgr;
+	
 	public PersonService(){
 		try {
-			Class.forName("org.hsqldb.jdbcDriver");
 			catalog = new RepositoryCatalog("jdbc:hsqldb:hsql://localhost/workdb");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -37,7 +42,7 @@ public class PersonService {
 		p.setSurname("Kowalski");
 		List<Person> result = new ArrayList<Person>();
 		result.add(p);
-		return catalog.people().getAll();
+		return mgr.createNativeQuery("Select * FROM Person").getResultList();
 	}
 	
 	
