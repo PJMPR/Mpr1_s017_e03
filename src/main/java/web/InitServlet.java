@@ -23,7 +23,7 @@ public class InitServlet extends HttpServlet {
 		IRepositoryCatalog catalog = null;
 		try {
 			catalog= new RepositoryCatalog("jdbc:hsqldb:hsql://localhost/workdb");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		

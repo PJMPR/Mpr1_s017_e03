@@ -16,8 +16,10 @@ public class RepositoryCatalog implements IRepositoryCatalog{
 	IUnitOfWork uow;
 	Connection connection;
 	
-	public RepositoryCatalog(String url) throws SQLException {
+	public RepositoryCatalog(String url) throws SQLException, ClassNotFoundException {
 		super();
+
+			Class.forName("org.hsqldb.jdbcDriver");
 			this.connection = DriverManager.getConnection(url);
 			this.uow = new UnitOfWork(this.connection);
 	}
