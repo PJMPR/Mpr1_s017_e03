@@ -41,12 +41,6 @@ public class PersonService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<Person> getAll() throws SQLException{
 
-		Person p = new Person();
-		p.setName("Jan");
-		p.setSurname("Kowalski");
-		List<Person> result = new ArrayList<Person>();
-		result.add(p);
-
 		return mgr.createNativeQuery("Select * FROM Person",Person.class).getResultList();
 
 	}
