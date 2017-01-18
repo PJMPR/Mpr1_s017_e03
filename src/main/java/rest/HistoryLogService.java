@@ -1,4 +1,4 @@
-package rest;
+package rest; 
 
 import java.sql.SQLException;
 
@@ -19,17 +19,22 @@ import com.sun.org.apache.xml.internal.resolver.Catalog;
 
 import dao.IRepositoryCatalog;
 import dao.RepositoryCatalog;
+import domain.model.HistoryLog;
+import domain.model.Operation;
 import domain.model.Person;
 
-@Path("people")
+@Path("History")
 @Stateless
-public class PersonService {
-	IRepositoryCatalog catalog;
+
+
+public class HistoryLogService {
+	
+IRepositoryCatalog catalog;
 	
 	@PersistenceContext
 	EntityManager mgr;
 	
-	public PersonService(){
+	public HistoryLogService(){
 		try {
 			catalog = new RepositoryCatalog("jdbc:hsqldb:hsql://localhost/workdb");
 		} catch (Exception e) {
@@ -40,18 +45,18 @@ public class PersonService {
 	
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<Person> getAll() throws SQLException{
+	public List<HistoryLog> getAll() throws SQLException{
 
-		Person p = new Person();
-		p.setName("Jan");
-		p.setSurname("Kowalski");
-		List<Person> result = new ArrayList<Person>();
-		result.add(p);
+		HistoryLog h = new HistoryLog();
+		h.setId(1);
+		h.setRate(0.3);
+		h.setType(Operation.INCOME);
+		List<HistoryLog> result = new ArrayList<HistoryLog>();
+		result.add(h);
 
-		return mgr.createNativeQuery("Select * FROM Person",Person.class).getResultList();
+		return mgr.createNativeQuery("Select * FROM historyLog",HistoryLog.class).getResultList();
 
 	}
 	
-	
-	
+
 }
