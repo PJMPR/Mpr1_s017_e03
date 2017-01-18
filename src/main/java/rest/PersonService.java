@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.GET;
@@ -18,6 +19,7 @@ import dao.RepositoryCatalog;
 import domain.model.Person;
 
 @Path("people")
+@Stateless
 public class PersonService {
 	IRepositoryCatalog catalog;
 	
@@ -42,7 +44,7 @@ public class PersonService {
 		p.setSurname("Kowalski");
 		List<Person> result = new ArrayList<Person>();
 		result.add(p);
-		return mgr.createNativeQuery("Select * FROM Person").getResultList();
+		return mgr.createNativeQuery("Select * FROM Person",Person.class).getResultList();
 	}
 	
 	
