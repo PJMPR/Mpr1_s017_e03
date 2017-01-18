@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "account.all", query = "FROM Account a"),
-	@NamedQuery(name = "account.id", query = "FROM Account a where a.id=:accountId")
-	@NamedQuery(name = "account.id", query = "FROM Account a where a.personid=:personId")
+	@NamedQuery(name = "account.id", query = "FROM Account a where a.id=:id"),
+	@NamedQuery(name = "account.byPerson", query = "FROM Account a where a.person.id=:person_Id")
 })
 public class Account implements IHaveId{
 	

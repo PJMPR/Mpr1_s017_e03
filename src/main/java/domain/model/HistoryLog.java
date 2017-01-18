@@ -9,31 +9,27 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "historyLog.all", query = "SELECT h FROM HistoryLog h"),
-	@NamedQuery(name = "historyLog.id", query = "FROM HistoryLog h where h.id=:historyLogId"),
+	@NamedQuery(name = "historyLog.id", query = "FROM HistoryLog h where h.id=:id"),
 })
 public class HistoryLog implements IHaveId{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@ManyToOne
-	private Account account;
+	
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	private double amount;
 	private Account from;
 	private Account to;
 	private double rate;
 	
-	public Account getAccount() {
-		return account;
-	}
-	public void setAccount(Account account) {
-		this.account = account;
-	}
 	public Date getDate() {
 		return date;
 	}
@@ -70,32 +66,6 @@ public class HistoryLog implements IHaveId{
 	public void setId(int id) {
 		this.id = id;
 	};
-	
-
-	private int accountId;
-	private int fromId;
-	private int toId;
-
-	public int getAccountId() {
-		return accountId;
-	}
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
-	}
-	public int getFromId() {
-		return fromId;
-	}
-	public void setFromId(int fromId) {
-		this.fromId = fromId;
-	}
-	public int getToId() {
-		return toId;
-	}
-	public void setToId(int toId) {
-		this.toId = toId;
-	}
-	
-	
 	
 	
 }
