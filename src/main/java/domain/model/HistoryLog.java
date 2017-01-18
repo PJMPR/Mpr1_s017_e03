@@ -12,19 +12,12 @@ public class HistoryLog implements IHaveId{
 	private Account from;
 	private Account to;
 	private double rate;
-	private Operation type;
 	
 	public Account getAccount() {
 		return account;
 	}
 	public void setAccount(Account account) {
 		this.account = account;
-	}
-	public Operation getType() {
-		return type;
-	}
-	public void setType(Operation type) {
-		this.type = type;
 	}
 	public Date getDate() {
 		return date;

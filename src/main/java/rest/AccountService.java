@@ -18,17 +18,17 @@ import com.sun.org.apache.xml.internal.resolver.Catalog;
 
 import dao.IRepositoryCatalog;
 import dao.RepositoryCatalog;
-import domain.model.Person;
+import domain.model.Account;
 
-@Path("people")
+@Path("accounts")
 @Stateless
-public class PersonService {
+public class AccountService {
 	IRepositoryCatalog catalog;
 	
 	@PersistenceContext
 	EntityManager mgr;
 	
-	public PersonService(){
+	public AccountService(){
 		try {
 			catalog = new RepositoryCatalog("jdbc:hsqldb:hsql://localhost/workdb");
 		} catch (Exception e) {
@@ -39,9 +39,9 @@ public class PersonService {
 	
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<Person> getAll() throws SQLException{
+	public List<Account> getAll() throws SQLException{
 
-		return mgr.createNativeQuery("Select * FROM Person",Person.class).getResultList();
+		return mgr.createNativeQuery("Select * FROM Account",Account.class).getResultList();
 
 	}
 	
