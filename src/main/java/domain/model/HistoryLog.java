@@ -56,6 +56,31 @@ public class HistoryLog implements IHaveId{
 		this.id = id;
 	};
 	
+
+	private int accountId;
+	private int fromId;
+	private int toId;
+
+	public int getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
+	}
+	public int getFromId() {
+		return fromId;
+	}
+	public void setFromId(int fromId) {
+		this.fromId = fromId;
+	}
+	public int getToId() {
+		return toId;
+	}
+	public void setToId(int toId) {
+		this.toId = toId;
+	}
+	
+	
 	
 	
 }

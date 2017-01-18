@@ -6,9 +6,9 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "account.all", query = "SELECT a FROM Account a"),
-	@NamedQuery(name = "account.id", query = "FROM Account a where a.id=:accountId"),
-	@NamedQuery(name = "account.id", query = "SELECT a FROM Account a where a.personid=:personId")
+	@NamedQuery(name = "account.all", query = "FROM Account a"),
+	@NamedQuery(name = "account.id", query = "FROM Account a where a.id=:accountId")
+	@NamedQuery(name = "account.id", query = "FROM Account a where a.personid=:personId")
 })
 public class Account implements IHaveId{
 	
@@ -34,6 +34,7 @@ public class Account implements IHaveId{
 	}
 	private double amount;
 	private String currency;
+	
 	private List<HistoryLog> history;
 	
 	

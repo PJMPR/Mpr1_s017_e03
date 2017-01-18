@@ -1,11 +1,13 @@
 package web;
 
 import domain.model.Account;
+import domain.model.HistoryLog;
 import domain.model.Person;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.Servlet;
@@ -44,6 +46,17 @@ private static final long serialVersionUID = 1L;
 				{
 					account.setPersonId(id);
 					catalog.accounts().add(account);
+					catalog.save();
+					account.setId(catalog.accounts().getMaxId());
+					HistoryLog log = new HistoryLog();
+					log.setFrom(account);
+					log.setTo(account);
+					log.setAmount(account.getAmount());
+					log.setDate(new Date());
+					log.setRate(0.0);
+					catalog.history().add(log);
+					catalog.save();
+					System.out.println("Zapisano !!");
 				}
 			catalog.saveAndClose();
 			session.removeAttribute("person");

@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,13 +38,12 @@ public class HistoryLogRepository extends RepositoryBase<HistoryLog>
 				+ "accountfrom BIGINT,"
 				+ "accountto BIGINT,"
 				+ "rate DECIMAL(7,2),"
-				+ "operation BIGINT"
 				+ ")";
 	}
 
 	@Override
 	protected String insertSql() {
-		return "INSERT INTO historyLog(date,amount,accountfrom,accountto,rate,operation) VALUES(?,?,?,?,?,?)";
+		return "INSERT INTO historyLog(date,amount,accountfrom,accountto,rate) VALUES(?,?,?,?,?)";
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class HistoryLogRepository extends RepositoryBase<HistoryLog>
 
 	@Override
 	protected String updateSql() {
-		return "UPDATE historyLog set date=?, amount=?, accountfrom=?, accountto=?, rate=?, operation=? WHERE id=?";
+		return "UPDATE historyLog set date=?, amount=?, accountfrom=?, accountto=?, rate=? WHERE id=?";
 	}
 
 	@Override
@@ -68,11 +68,12 @@ public class HistoryLogRepository extends RepositoryBase<HistoryLog>
 
 	@Override
 	protected void setupInsert(HistoryLog entity) throws SQLException {
-		insert.setString(1, entity.getDate().toString());
+	
 		insert.setDouble(2, entity.getAmount());
 		insert.setInt(3, entity.getFrom().getId());
 		insert.setInt(4, entity.getTo().getId());
 		insert.setDouble(5, entity.getRate());
+		insert.setDate(1,new Date(entity.getDate().getTime()));
 		
 	}
 

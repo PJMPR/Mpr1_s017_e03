@@ -38,7 +38,7 @@ public class PersonService {
 	}
 	
 	@GET
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Person> getAll() throws SQLException{
 
 		return mgr.createNativeQuery("Select * FROM Person",Person.class).getResultList();
