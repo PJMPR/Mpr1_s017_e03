@@ -1,11 +1,22 @@
 package domain.model;
 import javax.persistence.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "enumDictionary.all", query = "Select e from EnumDictionary e"),
+	@NamedQuery(name = "enumDictionary.name", query = "Select e from EnumDictionary e where e.enumName = name"),
+	@NamedQuery(name = "enumDictionary.id", query = "Select e from EnumDictionary e where e.id = id")
+})
 public class EnumDictionary implements IHaveId {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

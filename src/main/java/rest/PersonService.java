@@ -46,7 +46,9 @@ public class PersonService {
 		p.setSurname("Kowalski");
 		List<Person> result = new ArrayList<Person>();
 		result.add(p);
+
 		return mgr.createNativeQuery("Select * FROM Person",Person.class).getResultList();
+
 	}
 	
 	
