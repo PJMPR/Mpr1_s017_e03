@@ -73,7 +73,6 @@ public class HistoryLogRepository extends RepositoryBase<HistoryLog>
 		insert.setInt(3, entity.getFrom().getId());
 		insert.setInt(4, entity.getTo().getId());
 		insert.setDouble(5, entity.getRate());
-		insert.setInt(6, entity.getType().ordinal());
 		
 	}
 
@@ -84,7 +83,6 @@ public class HistoryLogRepository extends RepositoryBase<HistoryLog>
 		update.setInt(3, entity.getFrom().getId());
 		update.setInt(4, entity.getTo().getId());
 		update.setDouble(5, entity.getRate());
-		update.setInt(6, entity.getType().ordinal());
 		
 	}
 
