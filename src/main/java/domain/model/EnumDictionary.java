@@ -1,4 +1,5 @@
 package domain.model;
+import javax.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
 
 
 @Entity
@@ -25,6 +25,7 @@ public class EnumDictionary implements IHaveId {
 	private String value;
 	private String enumName;
 	
+	@Transient
 	public int getId() {
 		return id;
 	}
