@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 
 import domain.model.Account;
 
-@Path("people")
+@Path("accounts")
 @Stateless
 public class AccountService {
 	
