@@ -2,29 +2,37 @@ package domain.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
+@Entity
+@NamedQueries({
+	@NamedQuery(name = "historyLog.all", query = "SELECT h FROM HistoryLog h"),
+	@NamedQuery(name = "historyLog.id", query = "FROM HistoryLog h where h.id=:historyLogId"),
+})
 public class HistoryLog implements IHaveId{
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@ManyToOne
 	private Account account;
 	private Date date;
 	private double amount;
 	private Account from;
 	private Account to;
 	private double rate;
-	private Operation type;
 	
 	public Account getAccount() {
 		return account;
 	}
 	public void setAccount(Account account) {
 		this.account = account;
-	}
-	public Operation getType() {
-		return type;
-	}
-	public void setType(Operation type) {
-		this.type = type;
 	}
 	public Date getDate() {
 		return date;
