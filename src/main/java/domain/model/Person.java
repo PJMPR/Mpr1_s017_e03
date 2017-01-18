@@ -3,9 +3,18 @@ package domain.model;
 import java.util.List;
 
 import javax.annotation.Generated;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 @NamedQueries({
 	@NamedQuery(name = "person.all", query = "SELECT p FROM Person p"),
 	@NamedQuery(name = "person.id", query = "FROM Person p where p.id=:personId")
