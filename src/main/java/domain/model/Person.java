@@ -3,21 +3,23 @@ package domain.model;
 import java.util.List;
 
 import javax.annotation.Generated;
-import javax.persistence.CascadeType;
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "person.all", query = "Select p from Person p"),
-	@NamedQuery(name = "person.name", query = "Select p from Person p where p.name = name"),
-	@NamedQuery(name = "person.id", query = "Select p from Person p where p.id = id")
+	@NamedQuery(name = "person.all", query = "SELECT p FROM Person p"),
+	@NamedQuery(name = "person.id", query = "FROM Person p where p.id=:personId")
+
 })
 public class Person implements IHaveId{
 
@@ -42,8 +44,8 @@ public class Person implements IHaveId{
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	
-	@OneToMany(cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy="person")
 	public List<Account> getAccounts() {
 		return accounts;
 	}
