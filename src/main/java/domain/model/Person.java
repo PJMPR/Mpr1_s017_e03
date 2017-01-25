@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "person.all", query = "SELECT p FROM Person p"),
-	@NamedQuery(name = "person.id", query = "SELECT p FROM Person p where p.id=:personId")
+	@NamedQuery(name = "person.id", query = "SELECT p FROM Person p WHERE p.id=:personId")
 
 })
 public class Person implements IHaveId{
