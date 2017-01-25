@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
+import rest.dto.AccountDto;
 import rest.dto.PersonDto;
 
 import com.sun.org.apache.xml.internal.resolver.Catalog;
@@ -37,12 +38,12 @@ public class AccountService {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Account> getAll() throws SQLException{
+	public List<AccountDto> getAll() throws SQLException{
 
 		List<Account> accounts =  mgr.createNamedQuery("account.all",Account.class).getResultList();
-		List<Account> results = new ArrayList<Account>();
+		List<AccountDto> results = new ArrayList<AccountDto>();
 		for(Account a: accounts)
-			results.add(mapper.map(a, Account.class));
+			results.add(mapper.map(a, AccountDto.class));
 		return results;
 	}
 	
