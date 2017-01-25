@@ -18,19 +18,18 @@ import javax.ws.rs.core.Response;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
-
-
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
+import rest.dto.AccountDto;
 import rest.dto.PersonDto;
-
 import rest.dto.PersonDto;
 
 import com.sun.org.apache.xml.internal.resolver.Catalog;
 
 import dao.IRepositoryCatalog;
 import dao.RepositoryCatalog;
+import domain.model.Account;
 import domain.model.Person;
 
 @Path("people")
@@ -67,4 +66,19 @@ public class PersonService {
 	}
 	
 	
+	@GET
+	@Path("/{id}/accounts")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<AccountDto> getPersonAccounts(@PathParam("id") int personId){
+		Person p = mgr.createNamedQuery("person.id", Person.class)
+				.setParameter("personId",personId)
+				.getSingleResult();
+		if(p==null) 
+			return null;
+		List<AccountDto> result = new ArrayList<AccountDto>();
+		for(Account a: p.getAccounts()){
+			result.add(mapper.map(a, AccountDto.class));
+		}
+		return result;
+	}
 }
