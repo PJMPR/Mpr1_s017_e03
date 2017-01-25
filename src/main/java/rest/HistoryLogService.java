@@ -11,8 +11,10 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -51,6 +53,19 @@ IRepositoryCatalog catalog;
 		for(HistoryLog h: history)
 			results.add(mapper.map(h, HistoryLogDto.class));
 		return results;
-	}	
+
+	}
 	
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response gethistoryLog(@PathParam("id") int historyLogId){
+		HistoryLog h = mgr.createNamedQuery("historyLog.id", HistoryLog.class)
+				.setParameter("historyLogId",historyLogId)
+				.getSingleResult();
+		if(h==null) 
+			return Response.status(404).build();
+		
+		return	Response.ok(mapper.map(h, HistoryLogDto.class)).build();
+	}
 }
