@@ -26,8 +26,13 @@ public class HistoryLog implements IHaveId{
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	private double amount;
+	
+	@ManyToOne
 	private Account from;
+	
+	@ManyToOne
 	private Account to;
+	
 	private double rate;
 	
 	public Date getDate() {
