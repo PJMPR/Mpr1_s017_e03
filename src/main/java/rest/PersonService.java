@@ -19,9 +19,14 @@ import javax.ws.rs.core.Response;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
+
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+
 import rest.dto.PersonDto;
 
-import com.sun.mail.imap.protocol.Status;
+import rest.dto.PersonDto;
+
 import com.sun.org.apache.xml.internal.resolver.Catalog;
 
 import dao.IRepositoryCatalog;
@@ -37,6 +42,7 @@ public class PersonService {
 	@PersistenceContext
 	EntityManager mgr;
 	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<PersonDto> getAll(){
@@ -46,7 +52,7 @@ public class PersonService {
 			results.add(mapper.map(p, PersonDto.class));
 		return results;
 	}
-	
+
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
