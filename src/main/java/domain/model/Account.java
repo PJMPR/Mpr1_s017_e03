@@ -18,7 +18,12 @@ public class Account implements IHaveId{
 	private int personId;
 	@ManyToOne
 	private Person person;
+
+	private double amount;
+	private String currency;
 	
+	@OneToMany(mappedBy="from")
+	private List<HistoryLog> history;
 	
 	public Person getPerson() {
 		return person;
@@ -32,10 +37,6 @@ public class Account implements IHaveId{
 	public void setPersonId(int personId) {
 		this.personId = personId;
 	}
-	private double amount;
-	private String currency;
-	
-	private List<HistoryLog> history;
 	
 	
 	
