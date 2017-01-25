@@ -16,8 +16,8 @@ public class HistoryLogDto {
 	
 	private Date date;
 	private double amount;
-	private Account from;
-	private Account to;
+	private AccountDto from;
+	private AccountDto to;
 	private double rate;
 	public int getId() {
 		return id;
@@ -37,16 +37,16 @@ public class HistoryLogDto {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	public Account getFrom() {
+	public AccountDto getFrom() {
 		return from;
 	}
-	public void setFrom(Account from) {
+	public void setFrom(AccountDto from) {
 		this.from = from;
 	}
-	public Account getTo() {
+	public AccountDto getTo() {
 		return to;
 	}
-	public void setTo(Account to) {
+	public void setTo(AccountDto to) {
 		this.to = to;
 	}
 	public double getRate() {
