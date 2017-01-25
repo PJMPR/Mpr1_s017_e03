@@ -14,35 +14,36 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+
+import rest.dto.PersonDto;
+
 import com.sun.org.apache.xml.internal.resolver.Catalog;
 
 import dao.IRepositoryCatalog;
 import dao.RepositoryCatalog;
 import domain.model.Account;
+import domain.model.Person;
 
 @Path("accounts")
 @Stateless
 public class AccountService {
 	IRepositoryCatalog catalog;
+	Mapper mapper = new DozerBeanMapper();
 	
 	@PersistenceContext
 	EntityManager mgr;
 	
-	public AccountService(){
-		try {
-			catalog = new RepositoryCatalog("jdbc:hsqldb:hsql://localhost/workdb");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 	@GET
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Account> getAll() throws SQLException{
 
-		return mgr.createNativeQuery("Select * FROM Account",Account.class).getResultList();
-
+		List<Account> accounts =  mgr.createNamedQuery("account.all",Account.class).getResultList();
+		List<Account> results = new ArrayList<Account>();
+		for(Account a: accounts)
+			results.add(mapper.map(a, Account.class));
+		return results;
 	}
 	
 	

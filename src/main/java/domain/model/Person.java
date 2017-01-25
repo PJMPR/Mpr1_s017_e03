@@ -13,7 +13,6 @@ import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@XmlRootElement
 @NamedQueries({
 	@NamedQuery(name = "person.all", query = "SELECT p FROM Person p"),
 	@NamedQuery(name = "person.id", query = "SELECT p FROM Person p where p.id=:personId")
@@ -26,8 +25,8 @@ public class Person implements IHaveId{
 	private int id;
 	private String name;
 	private String surname;
-	
-	@Transient
+
+	@OneToMany(mappedBy="person")
 	private List<Account> accounts;
 	
 	public String getName() {
@@ -43,7 +42,6 @@ public class Person implements IHaveId{
 		this.surname = surname;
 	}
 
-	@OneToMany(mappedBy="person")
 	public List<Account> getAccounts() {
 		return accounts;
 	}
