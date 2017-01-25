@@ -1,7 +1,6 @@
 package rest; 
 
 import java.sql.SQLException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +14,17 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+
+import rest.dto.HistoryLogDto;
+import rest.dto.PersonDto;
+
 import com.sun.org.apache.xml.internal.resolver.Catalog;
 
 import dao.IRepositoryCatalog;
 import dao.RepositoryCatalog;
 import domain.model.HistoryLog;
-import domain.model.Operation;
 import domain.model.Person;
 
 @Path("History")
@@ -34,28 +38,19 @@ IRepositoryCatalog catalog;
 	@PersistenceContext
 	EntityManager mgr;
 	
-	public HistoryLogService(){
-		try {
-			catalog = new RepositoryCatalog("jdbc:hsqldb:hsql://localhost/workdb");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
+	Mapper mapper = new DozerBeanMapper();
+
 	
 	@GET
-	@Consumes(MediaType.APPLICATION_JSON)
-	public List<HistoryLog> getAll() throws SQLException{
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<HistoryLogDto> getAll() throws SQLException{
 
-		HistoryLog h = new HistoryLog();
-		h.setId(1);
-		h.setRate(0.3);
-		List<HistoryLog> result = new ArrayList<HistoryLog>();
-		result.add(h);
-
-		return mgr.createNativeQuery("Select * FROM historyLog",HistoryLog.class).getResultList();
-
-	}
+		List<HistoryLog> history =  mgr.createNamedQuery("historyLog.all",HistoryLog.class).getResultList();
+		List<HistoryLogDto> results = new ArrayList<HistoryLogDto>();
+		for(HistoryLog h: history)
+			results.add(mapper.map(h, HistoryLogDto.class));
+		return results;
 	
-
+	
 }
