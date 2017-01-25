@@ -50,7 +50,6 @@ IRepositoryCatalog catalog;
 		HistoryLog h = new HistoryLog();
 		h.setId(1);
 		h.setRate(0.3);
-		h.setType(Operation.INCOME);
 		List<HistoryLog> result = new ArrayList<HistoryLog>();
 		result.add(h);
 

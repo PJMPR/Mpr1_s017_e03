@@ -11,9 +11,8 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "enumDictionary.all", query = "FROM EnumDictionary e"),
-	@NamedQuery(name = "enumDictionary.name", query = "FROM EnumDictionary e where e.enumName=:name"),
-	@NamedQuery(name = "enumDictionary.id", query = "FROM EnumDictionary e where e.id=:id")
+	@NamedQuery(name = "enumDictionary.all", query = "SELECT e FROM EnumDictionary e"),
+	@NamedQuery(name = "enumDictionary.name", query = "SELECT e FROM EnumDictionary e where e.enumName=:name")
 })
 public class EnumDictionary implements IHaveId {
 	

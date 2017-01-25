@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "historyLog.all", query = "SELECT h FROM HistoryLog h"),
-	@NamedQuery(name = "historyLog.id", query = "FROM HistoryLog h where h.id=:id"),
+	@NamedQuery(name = "historyLog.id", query = "SELECT h FROM HistoryLog h where h.id=:id"),
 })
 public class HistoryLog implements IHaveId{
 
