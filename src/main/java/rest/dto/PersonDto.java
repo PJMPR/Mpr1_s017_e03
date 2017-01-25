@@ -3,7 +3,6 @@ package rest.dto;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-@XmlRootElement
 public class PersonDto {
 
 	private int id;
