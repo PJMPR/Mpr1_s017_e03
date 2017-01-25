@@ -51,6 +51,6 @@ IRepositoryCatalog catalog;
 		for(HistoryLog h: history)
 			results.add(mapper.map(h, HistoryLogDto.class));
 		return results;
-	
+	}	
 	
 }
