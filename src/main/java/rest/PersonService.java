@@ -43,8 +43,6 @@ public class PersonService {
 		for(Person p: people)
 			results.add(mapper.map(p, PersonDto.class));
 		return results;
-		
-		
 	}
 	
 	
